@@ -5,7 +5,7 @@
         "width": 25,
         "height": 25,
         "speed": 3,
-        "color": "#E6AC27"
+        "color": "#ffffff"
     },
     "boxes": [
         {"x": 0, "y": 110, "width": 10, "height": 290, "color": "green"},
