@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (level) {
       level.draw(ctx);
       player.update(level.platforms || []);
+      checkCollisions();
     }
     player.draw(ctx);
 
@@ -151,6 +152,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (keys['ArrowLeft']) player.moveLeft();
     if (keys['ArrowRight']) player.moveRight();
     if (keys['ArrowUp'] || keys[' ']) player.jump();
+  }
+
+  function checkCollisions() {
+    level.killbars.forEach(killbar => {
+      if (player.isColliding(killbar)) {
+        console.log('Player hit a killbar');
+        gameOver = true;
+      }
+    });
   }
 
   function displayGameOverScreen() {
