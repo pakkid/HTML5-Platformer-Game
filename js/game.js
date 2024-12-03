@@ -9,7 +9,7 @@ let gameOver = false;
 const keys = {};
 
 document.getElementById('start-button').addEventListener('click', () => {
-  document.getElementById('start-screen').style.opacity = 0;
+  document.getElementById('start-screen').classList.add('fade-out');
   setTimeout(() => {
     document.getElementById('start-screen').style.display = 'none';
     document.getElementById('level-select-screen').style.display = 'flex';
@@ -52,6 +52,7 @@ function startGame(levelUrl) {
   loadLevel(levelUrl).then(lvl => {
     level = lvl;
     gameOver = false;
+    canvas.classList.remove('blur');
     gameLoop();
   });
 }
@@ -87,6 +88,7 @@ function handleInput() {
 
 function displayGameOverScreen() {
   document.getElementById('restart-top-button').style.display = 'none';
+  canvas.classList.add('blur');
   document.getElementById('gameover-screen').classList.add('show');
   setTimeout(() => {
     document.getElementById('restart-button').classList.add('show');
