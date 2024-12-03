@@ -23,8 +23,10 @@ function startGame() {
 
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  level.draw(ctx);
-  player.update(level.platforms);
+  if (level) {
+    level.draw(ctx);
+    player.update(level.platforms);
+  }
   player.draw(ctx);
   requestAnimationFrame(gameLoop);
 }

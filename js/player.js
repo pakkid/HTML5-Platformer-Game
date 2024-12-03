@@ -17,18 +17,20 @@ class Player {
       this.y += this.velocityY;
   
       // Check for collisions with platforms
-      platforms.forEach(platform => {
-        if (this.isColliding(platform)) {
-          if (this.velocityY > 0) { // Falling down
-            this.y = platform.y - this.height;
-            this.onGround = true;
-            this.velocityY = 0;
-          } else if (this.velocityY < 0) { // Jumping up
-            this.y = platform.y + platform.height;
-            this.velocityY = 0;
+      if (platforms) {
+        platforms.forEach(platform => {
+          if (this.isColliding(platform)) {
+            if (this.velocityY > 0) { // Falling down
+              this.y = platform.y - this.height;
+              this.onGround = true;
+              this.velocityY = 0;
+            } else if (this.velocityY < 0) { // Jumping up
+              this.y = platform.y + platform.height;
+              this.velocityY = 0;
+            }
           }
-        }
-      });
+        });
+      }
   
       if (this.onGround) {
         this.velocityY = 0;
