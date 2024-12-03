@@ -11,22 +11,33 @@ document.addEventListener('DOMContentLoaded', () => {
   let gameOver = false;
   const keys = {};
 
+  function blurCanvas() {
+    canvas.classList.add('blur');
+  }
+
+  function unblurCanvas() {
+    canvas.classList.remove('blur');
+  }
+
   document.getElementById('start-button').addEventListener('click', () => {
     console.log('Start button clicked');
     document.getElementById('start-screen').classList.add('fade-out');
     setTimeout(() => {
       document.getElementById('start-screen').style.display = 'none';
+      unblurCanvas();
     }, 500);
   });
 
   document.getElementById('level-select-button').addEventListener('click', () => {
     console.log('Level select button clicked');
     document.getElementById('level-select-screen').style.display = 'flex';
+    blurCanvas();
   });
 
   document.getElementById('close-level-select').addEventListener('click', () => {
     console.log('Close level select button clicked');
     document.getElementById('level-select-screen').style.display = 'none';
+    unblurCanvas();
   });
 
   document.querySelectorAll('.level-button').forEach(button => {
@@ -101,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Starting game with level:', levelUrl);
     document.getElementById('level-select-screen').style.display = 'none';
     document.getElementById('restart-top-button').style.display = 'block';
-    canvas.classList.remove('blur');
+    unblurCanvas();
     loadLevel(levelUrl).then(lvl => {
       level = lvl;
       gameOver = false;
@@ -144,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function displayGameOverScreen() {
     console.log('Displaying game over screen');
     document.getElementById('restart-top-button').style.display = 'none';
-    canvas.classList.add('blur');
+    blurCanvas();
     document.getElementById('gameover-screen').classList.add('show');
     setTimeout(() => {
       document.getElementById('restart-button').classList.add('show');
