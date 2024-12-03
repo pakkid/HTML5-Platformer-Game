@@ -24,7 +24,7 @@ function startGame() {
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   level.draw(ctx);
-  player.update();
+  player.update(level.platforms);
   player.draw(ctx);
   requestAnimationFrame(gameLoop);
 }
