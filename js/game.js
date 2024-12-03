@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM fully loaded and parsed');
+  
   const canvas = document.getElementById('gameCanvas');
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
@@ -10,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const keys = {};
 
   document.getElementById('start-button').addEventListener('click', () => {
+    console.log('Start button clicked');
     document.getElementById('start-screen').classList.add('fade-out');
     setTimeout(() => {
       document.getElementById('start-screen').style.display = 'none';
@@ -17,21 +20,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('level-select-button').addEventListener('click', () => {
+    console.log('Level select button clicked');
     document.getElementById('level-select-screen').style.display = 'flex';
   });
 
   document.getElementById('close-level-select').addEventListener('click', () => {
+    console.log('Close level select button clicked');
     document.getElementById('level-select-screen').style.display = 'none';
   });
 
   document.querySelectorAll('.level-button').forEach(button => {
     button.addEventListener('click', (e) => {
       const levelUrl = e.target.getAttribute('data-level');
+      console.log(`Level button clicked: ${levelUrl}`);
       startGame(levelUrl);
     });
   });
 
   document.getElementById('drop-zone').addEventListener('click', () => {
+    console.log('Drop zone clicked');
     document.getElementById('custom-level-input').click();
   });
 
@@ -53,9 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('drop-zone').classList.remove('hover');
     const file = e.dataTransfer.files[0];
     if (file) {
+      console.log('File dropped:', file.name);
       const reader = new FileReader();
       reader.onload = (e) => {
         const customLevel = JSON.parse(e.target.result);
+        console.log('Custom level loaded:', customLevel);
         startGame(customLevel);
       };
       reader.readAsText(file);
@@ -65,9 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('custom-level-input').addEventListener('change', (e) => {
     const file = e.target.files[0];
     if (file) {
+      console.log('File selected:', file.name);
       const reader = new FileReader();
       reader.onload = (e) => {
         const customLevel = JSON.parse(e.target.result);
+        console.log('Custom level loaded:', customLevel);
         startGame(customLevel);
       };
       reader.readAsText(file);
@@ -75,22 +86,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('restart-button').addEventListener('click', () => {
+    console.log('Restart button clicked');
     document.getElementById('gameover-screen').classList.remove('show');
     document.getElementById('restart-button').classList.remove('show');
     startGame(level.url);
   });
 
   document.getElementById('restart-top-button').addEventListener('click', () => {
+    console.log('Top restart button clicked');
     startGame(level.url);
   });
 
   function startGame(levelUrl) {
+    console.log('Starting game with level:', levelUrl);
     document.getElementById('level-select-screen').style.display = 'none';
     document.getElementById('restart-top-button').style.display = 'block';
     loadLevel(levelUrl).then(lvl => {
       level = lvl;
       gameOver = false;
       canvas.classList.remove('blur');
+      console.log('Level loaded:', level);
       gameLoop();
     });
   }
@@ -110,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check if player has fallen off the screen
     if (player.y > canvas.height) {
+      console.log('Player fell off the screen');
       gameOver = true;
     }
 
@@ -125,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function displayGameOverScreen() {
+    console.log('Displaying game over screen');
     document.getElementById('restart-top-button').style.display = 'none';
     canvas.classList.add('blur');
     document.getElementById('gameover-screen').classList.add('show');
