@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       document.getElementById('start-screen').style.display = 'none';
       unblurCanvas();
+      startGame('levels/level1.json'); // Preload with level 1
     }, 500);
   });
 
