@@ -14,6 +14,7 @@ Welcome to the Platformer Game! This is a simple HTML5 platformer game where you
 ## Getting Started
 
 To get started with the game, clone the repository and open `index.html` in your web browser.
+Or open the ![live demo](https://pakkid.github.io/HTML5-Platformer-Game/)
 
 ```bash
 git clone https://github.com/your-username/HTML5-Platformer-Game.git
