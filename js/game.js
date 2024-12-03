@@ -101,10 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Starting game with level:', levelUrl);
     document.getElementById('level-select-screen').style.display = 'none';
     document.getElementById('restart-top-button').style.display = 'block';
+    canvas.classList.remove('blur');
     loadLevel(levelUrl).then(lvl => {
       level = lvl;
       gameOver = false;
-      canvas.classList.remove('blur');
+      player = new Player(100, 100); // Reset player position
       console.log('Level loaded:', level);
       gameLoop();
     });
