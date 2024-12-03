@@ -12,8 +12,15 @@ document.getElementById('start-button').addEventListener('click', () => {
   document.getElementById('start-screen').classList.add('fade-out');
   setTimeout(() => {
     document.getElementById('start-screen').style.display = 'none';
-    document.getElementById('level-select-screen').style.display = 'flex';
   }, 500);
+});
+
+document.getElementById('level-select-button').addEventListener('click', () => {
+  document.getElementById('level-select-screen').style.display = 'flex';
+});
+
+document.getElementById('close-level-select').addEventListener('click', () => {
+  document.getElementById('level-select-screen').style.display = 'none';
 });
 
 document.querySelectorAll('.level-button').forEach(button => {
@@ -23,9 +30,39 @@ document.querySelectorAll('.level-button').forEach(button => {
   });
 });
 
-document.getElementById('load-custom-level').addEventListener('click', () => {
-  const fileInput = document.getElementById('custom-level-input');
-  const file = fileInput.files[0];
+document.getElementById('drop-zone').addEventListener('click', () => {
+  document.getElementById('custom-level-input').click();
+});
+
+document.getElementById('drop-zone').addEventListener('dragover', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  document.getElementById('drop-zone').classList.add('hover');
+});
+
+document.getElementById('drop-zone').addEventListener('dragleave', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  document.getElementById('drop-zone').classList.remove('hover');
+});
+
+document.getElementById('drop-zone').addEventListener('drop', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  document.getElementById('drop-zone').classList.remove('hover');
+  const file = e.dataTransfer.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const customLevel = JSON.parse(e.target.result);
+      startGame(customLevel);
+    };
+    reader.readAsText(file);
+  }
+});
+
+document.getElementById('custom-level-input').addEventListener('change', (e) => {
+  const file = e.target.files[0];
   if (file) {
     const reader = new FileReader();
     reader.onload = (e) => {
