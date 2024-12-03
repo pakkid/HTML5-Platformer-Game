@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  let player = new Player(100, 100);
+  let player;
   let level;
   let gameOver = false;
   const keys = {};
@@ -49,54 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.getElementById('drop-zone').addEventListener('click', () => {
-    console.log('Drop zone clicked');
-    document.getElementById('custom-level-input').click();
-  });
-
-  document.getElementById('drop-zone').addEventListener('dragover', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    document.getElementById('drop-zone').classList.add('hover');
-  });
-
-  document.getElementById('drop-zone').addEventListener('dragleave', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    document.getElementById('drop-zone').classList.remove('hover');
-  });
-
-  document.getElementById('drop-zone').addEventListener('drop', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    document.getElementById('drop-zone').classList.remove('hover');
-    const file = e.dataTransfer.files[0];
-    if (file) {
-      console.log('File dropped:', file.name);
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const customLevel = JSON.parse(e.target.result);
-        console.log('Custom level loaded:', customLevel);
-        startGame(customLevel);
-      };
-      reader.readAsText(file);
-    }
-  });
-
-  document.getElementById('custom-level-input').addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      console.log('File selected:', file.name);
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const customLevel = JSON.parse(e.target.result);
-        console.log('Custom level loaded:', customLevel);
-        startGame(customLevel);
-      };
-      reader.readAsText(file);
-    }
-  });
-
   document.getElementById('restart-button').addEventListener('click', () => {
     console.log('Restart button clicked');
     document.getElementById('gameover-screen').classList.remove('show');
@@ -117,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadLevel(levelUrl).then(lvl => {
       level = lvl;
       gameOver = false;
-      player = new Player(100, 100); // Reset player position
+      player = new Player(level.start.x, level.start.y); // Set player position to start block
       console.log('Level loaded:', level);
       gameLoop();
     });
@@ -161,6 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
         gameOver = true;
       }
     });
+
+    if (player.isColliding(level.finish)) {
+      console.log('Player reached the finish block');
+      alert('Congratulations! You finished the level!');
+      gameOver = true;
+    }
   }
 
   function displayGameOverScreen() {

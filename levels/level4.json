@@ -1,0 +1,23 @@
+{
+    "start": { "x": 50, "y": 400 },
+    "finish": { "x": 750, "y": 50, "width": 50, "height": 50 },
+    "platforms": [
+      { "x": 100, "y": 400, "width": 150, "height": 20, "color": "blue" },
+      { "x": 300, "y": 350, "width": 150, "height": 20, "color": "green" },
+      { "x": 500, "y": 300, "width": 150, "height": 20, "color": "purple" },
+      { "x": 700, "y": 250, "width": 150, "height": 20, "color": "orange" }
+    ],
+    "killbars": [
+      { "x": 250, "y": 450, "width": 100, "height": 20, "color": "red" },
+      { "x": 450, "y": 400, "width": 100, "height": 20, "color": "red" },
+      { "x": 650, "y": 350, "width": 100, "height": 20, "color": "red" }
+    ],
+    "collectibles": [
+      { "x": 200, "y": 300, "width": 20, "height": 20, "color": "yellow" },
+      { "x": 400, "y": 250, "width": 20, "height": 20, "color": "yellow" },
+      { "x": 600, "y": 200, "width": 20, "height": 20, "color": "yellow" }
+    ],
+    "sky": {
+      "imageSrc": "path/to/sky-image.png"
+    }
+  }

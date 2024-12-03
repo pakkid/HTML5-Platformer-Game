@@ -51,17 +51,6 @@ body {
     transition: filter 0.5s;
 }
 
-#editorCanvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    transition: filter 0.5s;
-}
-
 .blur {
     filter: blur(5px);
 }
@@ -81,53 +70,6 @@ button {
 
 button:hover {
     background-color: #0056b3;
-}
-
-#toolbar {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 20;
-}
-
-#toolbar button {
-    margin: 5px;
-    padding: 10px;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#toolbar button:hover {
-    background-color: #0056b3;
-}
-
-#workspace {
-    position: absolute;
-    top: 50px;
-    left: 10px;
-    right: 10px;
-    bottom: 50px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    overflow: hidden;
-}
-
-#properties-panel {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 20;
 }
 
 #restart-top-button {
@@ -161,92 +103,4 @@ button:hover {
 
 #restart-button.show {
     opacity: 1;
-}
-
-#drop-zone {
-    border: 2px dashed #007BFF;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 10px 0;
-    cursor: pointer;
-    transition: border-color 0.3s;
-}
-
-#drop-zone:hover {
-    border-color: #0056b3;
-}
-
-#drop-zone p {
-    margin: 0;
-}
-
-#custom-level-input {
-    display: none;
-}
-
-.fade-out {
-    animation: fadeOut 0.5s forwards;
-}
-
-@keyframes fadeOut {
-    to {
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-
-.clear-blur {
-    filter: none;
-}
-
-#file-structure {
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border-radius: 5px;
-    z-index: 20;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-#file-structure h3 {
-    margin: 0;
-    padding: 0;
-}
-
-#file-structure ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#file-structure li {
-    margin: 5px 0;
-    cursor: pointer;
-}
-
-#bottom-buttons {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
-
-#bottom-buttons button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007BFF;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#bottom-buttons button:hover {
-    background-color: #0056b3;
 }
