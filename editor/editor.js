@@ -14,7 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   
     let selectedElement = null;
-    let mode = 'select'; // Modes: 'select', 'add-platform', 'add-killbar', 'add-collectible'
+    let mode = 'select'; // Modes: 'select', 'add-platform', 'add-killbar', 'add-collectible', 'move'
+    let isDragging = false;
+    let dragOffsetX = 0;
+    let dragOffsetY = 0;
     const toolbar = document.getElementById('toolbar');
     const propertiesPanel = document.getElementById('properties-panel');
   
@@ -198,6 +201,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const element = elements.find(el => x >= el.x && x <= el.x + el.width && y >= el.y && y <= el.y + el.height);
         if (element) {
           selectElement(element);
+          mode = 'move';
+          isDragging = true;
+          dragOffsetX = x - element.x;
+          dragOffsetY = y - element.y;
         } else {
           selectElement(null);
         }
@@ -205,7 +212,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   
     canvas.addEventListener('mousemove', (e) => {
-      if (mode === 'select' && selectedElement) {
+      if (mode === 'move' && isDragging && selectedElement) {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        selectedElement.x = x - dragOffsetX;
+        selectedElement.y = y - dragOffsetY;
+        drawLevel();
+      } else if (mode === 'select' && selectedElement) {
         const rect = canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
@@ -236,6 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
     canvas.addEventListener('mouseup', () => {
       if (mode === 'resize-width' || mode === 'resize-height') {
+        mode = 'select';
+      } else if (mode === 'move') {
+        isDragging = false;
         mode = 'select';
       }
     });
