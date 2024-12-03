@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level Editor</title>
-    <link rel="stylesheet" href="/assets/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Level Editor</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div id="toolbar">
-        <button id="addPlatform">Add Platform</button>
-        <button id="addPowerup">Add Powerup</button>
-        <button id="deleteElement">Delete Element</button>
-        <button id="saveLevel">Save Level</button>
-        <input type="file" id="importLevel" accept=".json">
-    </div>
-    <canvas id="editorCanvas"></canvas>
-    <script src="editor.js"></script>
+  <div id="toolbar">
+    <!-- Toolbar buttons for adding platforms, enemies, etc. -->
+  </div>
+  <canvas id="editorCanvas"></canvas>
+  <div id="properties-panel">
+    <!-- Properties of the selected item -->
+  </div>
+  <button id="save-button">Save Level</button>
+  <button id="load-button">Load Level</button>
+  <input type="file" id="file-input" style="display: none;">
+  <script src="/js/editor.js"></script>
 </body>
 </html>
