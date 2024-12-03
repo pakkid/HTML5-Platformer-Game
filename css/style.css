@@ -51,6 +51,17 @@ body {
     transition: filter 0.5s;
 }
 
+#editorCanvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: filter 0.5s;
+}
+
 .blur {
     filter: blur(5px);
 }
@@ -70,6 +81,42 @@ button {
 
 button:hover {
     background-color: #0056b3;
+}
+
+#toolbar {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 20;
+}
+
+#toolbar button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#toolbar button:hover {
+    background-color: #0056b3;
+}
+
+#properties-panel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 20;
 }
 
 #restart-top-button {

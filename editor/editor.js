@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let level = {
       platforms: [],
       enemies: [],
-      collectibles: []
+      collectibles: [],
+      sky: { imageSrc: '' }
     };
   
     let selectedElement = null;
@@ -18,6 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function drawLevel() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (level.sky.imageSrc) {
+        const skyImage = new Image();
+        skyImage.src = level.sky.imageSrc;
+        skyImage.onload = () => {
+          ctx.drawImage(skyImage, 0, 0, canvas.width, canvas.height);
+        };
+      }
       level.platforms.forEach(platform => {
         ctx.fillStyle = platform.color || 'gray';
         ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
@@ -27,6 +35,16 @@ document.addEventListener('DOMContentLoaded', () => {
   
     function addPlatform(x, y, width, height, color) {
       level.platforms.push({ x, y, width, height, color });
+      drawLevel();
+    }
+  
+    function addEnemy(x, y, width, height, color) {
+      level.enemies.push({ x, y, width, height, color });
+      drawLevel();
+    }
+  
+    function addCollectible(x, y, width, height, color) {
+      level.collectibles.push({ x, y, width, height, color });
       drawLevel();
     }
   
@@ -99,6 +117,29 @@ document.addEventListener('DOMContentLoaded', () => {
       const file = e.target.files[0];
       if (file) {
         loadLevel(file);
+      }
+    });
+  
+    document.getElementById('add-platform').addEventListener('click', () => {
+      const x = 50, y = 50, width = 100, height = 20, color = '#808080';
+      addPlatform(x, y, width, height, color);
+    });
+  
+    document.getElementById('add-enemy').addEventListener('click', () => {
+      const x = 50, y = 50, width = 50, height = 50, color = '#FF0000';
+      addEnemy(x, y, width, height, color);
+    });
+  
+    document.getElementById('add-collectible').addEventListener('click', () => {
+      const x = 50, y = 50, width = 20, height = 20, color = '#FFFF00';
+      addCollectible(x, y, width, height, color);
+    });
+  
+    document.getElementById('change-sky').addEventListener('click', () => {
+      const skyUrl = prompt('Enter the URL of the sky image:');
+      if (skyUrl) {
+        level.sky.imageSrc = skyUrl;
+        drawLevel();
       }
     });
   

@@ -8,15 +8,20 @@
 </head>
 <body>
   <div id="toolbar">
-    <!-- Toolbar buttons for adding platforms, enemies, etc. -->
+    <button id="add-platform">Add Platform</button>
+    <button id="add-enemy">Add Enemy</button>
+    <button id="add-collectible">Add Collectible</button>
+    <button id="move-element">Move Element</button>
+    <button id="change-color">Change Color</button>
+    <button id="change-sky">Change Sky</button>
   </div>
   <canvas id="editorCanvas"></canvas>
   <div id="properties-panel">
-    <!-- Properties of the selected item -->
+    <p>No element selected</p>
   </div>
   <button id="save-button">Save Level</button>
   <button id="load-button">Load Level</button>
-  <input type="file" id="file-input" style="display: none;">
+  <input type="file" id="file-input" accept=".json" style="display: none;">
   <script src="editor.js"></script>
 </body>
 </html>
