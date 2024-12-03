@@ -14,6 +14,22 @@
       <button id="start-button">Start Game</button>
     </div>
   </div>
+  <div id="level-select-screen">
+    <div id="level-select-message">
+      <h1>Select a Level</h1>
+      <button class="level-button" data-level="levels/level1.json">Level 1</button>
+      <button class="level-button" data-level="levels/level2.json">Level 2</button>
+      <input type="file" id="custom-level-input" accept=".json">
+      <button id="load-custom-level">Load Custom Level</button>
+    </div>
+  </div>
+  <div id="gameover-screen">
+    <div id="gameover-message">
+      <h1>Game Over</h1>
+      <button id="restart-button">Restart</button>
+    </div>
+  </div>
+  <button id="restart-top-button">Restart</button>
   <canvas id="gameCanvas"></canvas>
   <script src="js/sky.js"></script>
   <script src="js/player.js"></script>

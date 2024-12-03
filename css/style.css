@@ -4,7 +4,7 @@ body {
     font-family: Arial, sans-serif;
   }
   
-  #start-screen {
+  #start-screen, #level-select-screen, #gameover-screen {
     position: absolute;
     top: 0;
     left: 0;
@@ -17,35 +17,58 @@ body {
     transition: opacity 0.5s;
   }
   
-  #start-message {
+  #start-message, #level-select-message, #gameover-message {
     background: white;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
   }
   
-  #gameCanvas, #editorCanvas {
+  #gameCanvas {
     display: block;
     width: 100vw;
     height: 100vh;
   }
   
-  #toolbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-  }
-  
-  #properties-panel {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-  }
-  
   button {
     margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  #restart-top-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+  }
+  
+  #gameover-screen {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  #gameover-screen.show {
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity 2s;
+  }
+  
+  #restart-button {
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  
+  #restart-button.show {
+    opacity: 1;
   }

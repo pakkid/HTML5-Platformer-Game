@@ -12,13 +12,46 @@ document.getElementById('start-button').addEventListener('click', () => {
   document.getElementById('start-screen').style.opacity = 0;
   setTimeout(() => {
     document.getElementById('start-screen').style.display = 'none';
-    startGame();
+    document.getElementById('level-select-screen').style.display = 'flex';
   }, 500);
 });
 
-function startGame() {
-  loadLevel('levels/level1.json').then(lvl => {
+document.querySelectorAll('.level-button').forEach(button => {
+  button.addEventListener('click', (e) => {
+    const levelUrl = e.target.getAttribute('data-level');
+    startGame(levelUrl);
+  });
+});
+
+document.getElementById('load-custom-level').addEventListener('click', () => {
+  const fileInput = document.getElementById('custom-level-input');
+  const file = fileInput.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const customLevel = JSON.parse(e.target.result);
+      startGame(customLevel);
+    };
+    reader.readAsText(file);
+  }
+});
+
+document.getElementById('restart-button').addEventListener('click', () => {
+  document.getElementById('gameover-screen').classList.remove('show');
+  document.getElementById('restart-button').classList.remove('show');
+  startGame(level.url);
+});
+
+document.getElementById('restart-top-button').addEventListener('click', () => {
+  startGame(level.url);
+});
+
+function startGame(levelUrl) {
+  document.getElementById('level-select-screen').style.display = 'none';
+  document.getElementById('restart-top-button').style.display = 'block';
+  loadLevel(levelUrl).then(lvl => {
     level = lvl;
+    gameOver = false;
     gameLoop();
   });
 }
@@ -53,12 +86,11 @@ function handleInput() {
 }
 
 function displayGameOverScreen() {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = 'white';
-  ctx.font = '48px Arial';
-  ctx.textAlign = 'center';
-  ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2);
+  document.getElementById('restart-top-button').style.display = 'none';
+  document.getElementById('gameover-screen').classList.add('show');
+  setTimeout(() => {
+    document.getElementById('restart-button').classList.add('show');
+  }, 2000);
 }
 
 window.addEventListener('keydown', (e) => {
