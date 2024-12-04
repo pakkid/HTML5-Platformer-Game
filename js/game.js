@@ -158,10 +158,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (player.isColliding(level.finish)) {
-      console.log('Player reached the finish block');
-      gameWon = true;
-      displayWinScreen();
-    }
+      level.finish.forEach(finish => {
+        console.log('Player reached the finish block');
+        gameWon = true;
+        displayWinScreen();
+    }});
   }
 
   function displayGameOverScreen() {
