@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
   let level;
   let gameOver = false;
   const keys = {};
+  const levels = [
+    'levels/level1.json',
+    'levels/level2.json',
+    'levels/level3.json',
+    'levels/level4.json',
+    'levels/level5.json'
+  ];
+  let currentLevelIndex = 0;
 
   function blurCanvas() {
     canvas.classList.add('blur');
@@ -25,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       document.getElementById('start-screen').style.display = 'none';
       unblurCanvas();
-      startGame('levels/level1.json'); // Preload with level 1
+      startGame(levels[currentLevelIndex]); // Preload with level 1
     }, 500);
   });
 
@@ -45,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', (e) => {
       const levelUrl = e.target.getAttribute('data-level');
       console.log(`Level button clicked: ${levelUrl}`);
+      currentLevelIndex = levels.indexOf(levelUrl);
       startGame(levelUrl);
     });
   });
@@ -54,6 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('gameover-screen').classList.remove('show');
     document.getElementById('restart-button').classList.remove('show');
     startGame(level.url);
+  });
+
+  document.getElementById('restart-button-win').addEventListener('click', () => {
+    console.log('Restart button (win) clicked');
+    document.getElementById('win-screen').classList.remove('show');
+    document.getElementById('restart-button-win').classList.remove('show');
+    document.getElementById('next-level-button').classList.remove('show');
+    startGame(level.url);
+  });
+
+  document.getElementById('next-level-button').addEventListener('click', () => {
+    console.log('Next level button clicked');
+    document.getElementById('win-screen').classList.remove('show');
+    document.getElementById('restart-button-win').classList.remove('show');
+    document.getElementById('next-level-button').classList.remove('show');
+    nextLevel();
   });
 
   document.getElementById('restart-top-button').addEventListener('click', () => {
@@ -75,9 +100,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function nextLevel() {
+    currentLevelIndex = (currentLevelIndex + 1) % levels.length;
+    startGame(levels[currentLevelIndex]);
+  }
+
   function gameLoop() {
     if (gameOver) {
-      displayGameOverScreen();
       return;
     }
 
@@ -93,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (player.y > canvas.height) {
       console.log('Player fell off the screen');
       gameOver = true;
+      displayGameOverScreen();
     }
 
     handleInput();
@@ -111,13 +141,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (player.isColliding(killbar)) {
         console.log('Player hit a killbar');
         gameOver = true;
+        displayGameOverScreen();
       }
     });
 
     if (player.isColliding(level.finish)) {
       console.log('Player reached the finish block');
-      alert('Congratulations! You finished the level!');
-      gameOver = true;
+      displayWinScreen();
     }
   }
 
@@ -128,6 +158,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('gameover-screen').classList.add('show');
     setTimeout(() => {
       document.getElementById('restart-button').classList.add('show');
+    }, 2000);
+  }
+
+  function displayWinScreen() {
+    console.log('Displaying win screen');
+    document.getElementById('restart-top-button').style.display = 'none';
+    blurCanvas();
+    document.getElementById('win-screen').classList.add('show');
+    setTimeout(() => {
+      document.getElementById('restart-button-win').classList.add('show');
+      document.getElementById('next-level-button').classList.add('show');
     }, 2000);
   }
 

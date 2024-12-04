@@ -15,7 +15,7 @@ body {
     font-style: normal;
 }
 
-#start-screen, #level-select-screen, #gameover-screen {
+#start-screen, #level-select-screen, #gameover-screen, #win-screen {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 20px;
@@ -30,13 +30,13 @@ body {
     transition: opacity 0.5s;
 }
 
-#start-screen, #level-select-screen, #gameover-screen {
+#start-screen, #level-select-screen, #gameover-screen, #win-screen {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-#level-select-screen {
+#level-select-screen, #win-screen {
     display: none;
 }
 
@@ -85,22 +85,22 @@ button:hover {
     right: 10px;
 }
 
-#gameover-screen {
+#gameover-screen, #win-screen {
     opacity: 0;
     pointer-events: none;
 }
 
-#gameover-screen.show {
+#gameover-screen.show, #win-screen.show {
     opacity: 1;
     pointer-events: all;
     transition: opacity 2s;
 }
 
-#restart-button {
+#restart-button, #restart-button-win, #next-level-button {
     opacity: 0;
     transition: opacity 1s;
 }
 
-#restart-button.show {
+#restart-button.show, #restart-button-win.show, #next-level-button.show {
     opacity: 1;
 }
