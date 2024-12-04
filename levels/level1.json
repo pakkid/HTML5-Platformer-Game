@@ -7,8 +7,5 @@
   ],
   "killbars": [
     { "x": 300, "y": 350, "width": 100, "height": 20, "color": "red" }
-  ],
-  "collectibles": [
-    { "x": 500, "y": 150, "width": 20, "height": 20, "color": "yellow" }
   ]
 }
