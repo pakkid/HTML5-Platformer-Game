@@ -26,6 +26,12 @@ class Level {
         ctx.fillRect(collectible.x, collectible.y, collectible.width, collectible.height);
       }
     });
+    // Draw start block
+    ctx.fillStyle = 'green';
+    ctx.fillRect(this.start.x, this.start.y, this.start.width, this.start.height);
+    // Draw finish block
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(this.finish.x, this.finish.y, this.finish.width, this.finish.height);
   }
 }
 
