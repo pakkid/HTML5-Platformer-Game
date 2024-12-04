@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let player;
   let level;
   let gameOver = false;
+  let gameWon = false;
   const keys = {};
   const levels = [
     'levels/level1.json',
@@ -99,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
       level = lvl;
       level.url = levelUrl; // Set the level URL
       gameOver = false;
+      gameWon = false;
       player = new Player(level.start.x, level.start.y - 50); // Set player position on top of start block
       console.log('Level loaded:', level);
       gameLoop();
@@ -113,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function gameLoop() {
-    if (gameOver) {
+    if (gameOver || gameWon) {
       return;
     }
 
@@ -154,6 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (player.isColliding(level.finish)) {
       console.log('Player reached the finish block');
+      gameWon = true;
       displayWinScreen();
     }
   }
