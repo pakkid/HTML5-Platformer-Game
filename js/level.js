@@ -5,17 +5,9 @@ class Level {
     this.collectibles = data.collectibles || [];
     this.start = data.start || { x: 0, y: 0 };
     this.finish = data.finish || { x: 0, y: 0, width: 50, height: 50 };
-    this.sky = data.sky || {};
   }
 
   draw(ctx) {
-    if (this.sky.imageSrc) {
-      const skyImage = new Image();
-      skyImage.src = this.sky.imageSrc;
-      skyImage.onload = () => {
-        ctx.drawImage(skyImage, 0, 0, ctx.canvas.width, ctx.canvas.height);
-      };
-    }
     this.platforms.forEach(platform => {
       if (platform.visible !== false) {
         ctx.fillStyle = platform.color || 'gray';

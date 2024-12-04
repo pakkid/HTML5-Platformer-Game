@@ -87,16 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function startGame(levelUrl) {
+    if (!levelUrl) {
+      console.error('Level URL is undefined');
+      return;
+    }
     console.log('Starting game with level:', levelUrl);
     document.getElementById('level-select-screen').style.display = 'none';
     document.getElementById('restart-top-button').style.display = 'block';
     unblurCanvas();
     loadLevel(levelUrl).then(lvl => {
       level = lvl;
+      level.url = levelUrl; // Set the level URL
       gameOver = false;
-      player = new Player(level.start.x, level.start.y); // Set player position to start block
+      player = new Player(level.start.x, level.start.y - 50); // Set player position on top of start block
       console.log('Level loaded:', level);
       gameLoop();
+    }).catch(error => {
+      console.error('Error loading level:', error);
     });
   }
 
