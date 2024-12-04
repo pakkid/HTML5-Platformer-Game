@@ -149,6 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function checkCollisions() {
+    if (player.isColliding(level.finish)) {
+      console.log('Player reached the finish block');
+      gameWon = true;
+      displayWinScreen();
+    }
+
     level.killbars.forEach(killbar => {
       if (player.isColliding(killbar)) {
         console.log('Player hit a killbar');
@@ -156,12 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
         displayGameOverScreen();
       }
     });
-
-    if (player.isColliding(level.finish) && player.y + player.height <= level.finish.y + level.finish.height) {
-      console.log('Player reached the finish block');
-      gameWon = true;
-      displayWinScreen();
-    }
   }
 
   function displayGameOverScreen() {
