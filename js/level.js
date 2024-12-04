@@ -3,7 +3,7 @@ class Level {
     this.platforms = data.platforms || [];
     this.killbars = data.killbars || [];
     this.collectibles = data.collectibles || [];
-    this.start = data.start || { x: 0, y: 0 };
+    this.start = data.start || { x: 0, y: 0, width: 50, height: 50 };
     this.finish = data.finish || { x: 0, y: 0, width: 50, height: 50 };
   }
 
@@ -26,9 +26,6 @@ class Level {
         ctx.fillRect(collectible.x, collectible.y, collectible.width, collectible.height);
       }
     });
-    // Draw start block
-    ctx.fillStyle = 'green';
-    ctx.fillRect(this.start.x, this.start.y, 50, 50);
     // Draw finish block
     ctx.fillStyle = 'blue';
     ctx.fillRect(this.finish.x, this.finish.y, this.finish.width, this.finish.height);

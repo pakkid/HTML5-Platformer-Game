@@ -1,23 +1,20 @@
 {
-    "start": { "x": 50, "y": 450 },
-    "finish": { "x": 800, "y": 100, "width": 50, "height": 50 },
-    "platforms": [
-      { "x": 100, "y": 450, "width": 200, "height": 20, "color": "cyan" },
-      { "x": 350, "y": 400, "width": 200, "height": 20, "color": "magenta" },
-      { "x": 600, "y": 350, "width": 200, "height": 20, "color": "lime" },
-      { "x": 850, "y": 300, "width": 200, "height": 20, "color": "pink" }
-    ],
-    "killbars": [
-      { "x": 300, "y": 500, "width": 100, "height": 20, "color": "red" },
-      { "x": 550, "y": 450, "width": 100, "height": 20, "color": "red" },
-      { "x": 800, "y": 400, "width": 100, "height": 20, "color": "red" }
-    ],
-    "collectibles": [
-      { "x": 250, "y": 350, "width": 20, "height": 20, "color": "yellow" },
-      { "x": 500, "y": 300, "width": 20, "height": 20, "color": "yellow" },
-      { "x": 750, "y": 250, "width": 20, "height": 20, "color": "yellow" }
-    ],
-    "sky": {
-      "imageSrc": "path/to/sky-image.png"
-    }
-  }
+  "start": { "x": 50, "y": 450, "width": 50, "height": 50 },
+  "finish": { "x": 800, "y": 100, "width": 50, "height": 50 },
+  "platforms": [
+    { "x": 100, "y": 450, "width": 200, "height": 20, "color": "cyan" },
+    { "x": 350, "y": 400, "width": 200, "height": 20, "color": "magenta" },
+    { "x": 600, "y": 350, "width": 200, "height": 20, "color": "lime" },
+    { "x": 850, "y": 300, "width": 200, "height": 20, "color": "pink" }
+  ],
+  "killbars": [
+    { "x": 300, "y": 500, "width": 100, "height": 20, "color": "red" },
+    { "x": 550, "y": 450, "width": 100, "height": 20, "color": "red" },
+    { "x": 800, "y": 400, "width": 100, "height": 20, "color": "red" }
+  ],
+  "collectibles": [
+    { "x": 250, "y": 350, "width": 20, "height": 20, "color": "yellow" },
+    { "x": 500, "y": 300, "width": 20, "height": 20, "color": "yellow" },
+    { "x": 750, "y": 250, "width": 20, "height": 20, "color": "yellow" }
+  ]
+}

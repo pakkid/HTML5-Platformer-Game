@@ -1,5 +1,5 @@
 {
-  "start": { "x": 50, "y": 300 },
+  "start": { "x": 50, "y": 300, "width": 50, "height": 50 },
   "finish": { "x": 700, "y": 100, "width": 50, "height": 50 },
   "platforms": [
     { "x": 100, "y": 300, "width": 200, "height": 20, "color": "blue" },
@@ -10,8 +10,5 @@
   ],
   "collectibles": [
     { "x": 500, "y": 150, "width": 20, "height": 20, "color": "yellow" }
-  ],
-  "sky": {
-    "imageSrc": "path/to/sky-image.png"
-  }
+  ]
 }

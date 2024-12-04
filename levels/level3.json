@@ -1,17 +1,14 @@
 {
-    "start": { "x": 100, "y": 350 },
-    "finish": { "x": 800, "y": 200, "width": 50, "height": 50 },
-    "platforms": [
-      { "x": 150, "y": 350, "width": 200, "height": 20, "color": "cyan" },
-      { "x": 450, "y": 250, "width": 200, "height": 20, "color": "magenta" }
-    ],
-    "killbars": [
-      { "x": 350, "y": 400, "width": 100, "height": 20, "color": "red" }
-    ],
-    "collectibles": [
-      { "x": 600, "y": 200, "width": 20, "height": 20, "color": "yellow" }
-    ],
-    "sky": {
-      "imageSrc": "path/to/sky-image.png"
-    }
-  }
+  "start": { "x": 100, "y": 350, "width": 50, "height": 50 },
+  "finish": { "x": 800, "y": 200, "width": 50, "height": 50 },
+  "platforms": [
+    { "x": 150, "y": 350, "width": 200, "height": 20, "color": "cyan" },
+    { "x": 450, "y": 250, "width": 200, "height": 20, "color": "magenta" }
+  ],
+  "killbars": [
+    { "x": 350, "y": 400, "width": 100, "height": 20, "color": "red" }
+  ],
+  "collectibles": [
+    { "x": 600, "y": 200, "width": 20, "height": 20, "color": "yellow" }
+  ]
+}

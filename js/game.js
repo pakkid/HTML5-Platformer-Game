@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (level) {
       level.draw(ctx);
-      player.update(level.platforms || [], level.start); // Pass start block to player.update
+      player.update([...level.platforms, level.start] || []); // Include start block in platforms
       checkCollisions();
     }
     player.draw(ctx);
