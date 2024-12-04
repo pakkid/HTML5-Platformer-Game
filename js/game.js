@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'levels/level5.json'
   ];
   let currentLevelIndex = 0;
+  const GAME_SPEED = 60; // Set game speed to 60 FPS
 
   function blurCanvas() {
     canvas.classList.add('blur');
@@ -136,7 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     handleInput();
 
-    requestAnimationFrame(gameLoop);
+    setTimeout(() => {
+      requestAnimationFrame(gameLoop);
+    }, 1000 / GAME_SPEED);
   }
 
   function handleInput() {
