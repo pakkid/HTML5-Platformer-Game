@@ -11,20 +11,21 @@ class Player {
     this.onGround = false;
   }
 
-  update(platforms = []) {
+  update(platforms = [], startBlock) {
     this.onGround = false;
     this.velocityY += this.gravity;
     this.y += this.velocityY;
 
-    // Check for collisions with platforms
-    platforms.forEach(platform => {
-      if (this.isColliding(platform)) {
+    // Check for collisions with platforms and start block
+    const elements = [...platforms, startBlock];
+    elements.forEach(element => {
+      if (this.isColliding(element)) {
         if (this.velocityY > 0) { // Falling down
-          this.y = platform.y - this.height;
+          this.y = element.y - this.height;
           this.onGround = true;
           this.velocityY = 0;
         } else if (this.velocityY < 0) { // Jumping up
-          this.y = platform.y + platform.height;
+          this.y = element.y + element.height;
           this.velocityY = 0;
         }
       }
