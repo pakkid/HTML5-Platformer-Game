@@ -26,9 +26,6 @@ class Level {
         ctx.fillRect(collectible.x, collectible.y, collectible.width, collectible.height);
       }
     });
-    // Draw finish block
-    ctx.fillStyle = 'blue';
-    ctx.fillRect(this.finish.x, this.finish.y, this.finish.width, this.finish.height);
   }
 }
 
